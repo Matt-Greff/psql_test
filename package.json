@@ -1,0 +1,22 @@
+{
+  "name": "psql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "psql.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matt-Greff/psql_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matt-Greff/psql_test/issues"
+  },
+  "homepage": "https://github.com/Matt-Greff/psql_test#readme",
+  "dependencies": {
+    "knex": "^0.14.6"
+  }
+}

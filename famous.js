@@ -14,10 +14,9 @@ var knex = require('knex')({
 
 // these next two functions output the same value, one uses raw while the first uses knex syntax and has error handing
 const allFamous = () => {
-  knex.select('*')
+  return knex.select('*')
     .from('famous_people')
-    .asCallback( (err, rows) => {
-      if (err) return console.error(err);
+    .then((rows) => {
       rows.forEach((person) => {
         console.log(`${person.first_name} ${person.last_name} born ${(person.birthdate)}`)
       });
@@ -25,19 +24,28 @@ const allFamous = () => {
 }
 
 const addPerson = () => {
-  knex('famous_people')
+  return knex('famous_people')
   .insert([{
     first_name : famousPersonToAdd[0],
     last_name  : famousPersonToAdd[1],
     birthdate  : famousPersonToAdd[2]
   }])
-  .then(() => {
-    console.log('success!');
-    allFamous();  
+  .then( () => {
+    throw Error('hahha');
   })
 }
 
-famousPersonToAdd[2] ? addPerson() : console.log('incorrect parameters...');
+const start = () => {
+  addPerson()
+  .then(allFamous)
+  .then(() => {
+  })
+  .catch((error)=>{
+    console.log('there was an error', error)
+  })
+}
+
+famousPersonToAdd[2] ? start() : console.log('incorrect parameters...');
 
 /* 
 knex.raw('select * from famous_people')
